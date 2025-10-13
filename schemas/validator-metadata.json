@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "JSON schema for the metadata of a GDI validator",
+  "type": "object",
+  "required": [
+    "validatorId",
+    "name",
+    "description",
+    "version",
+    "mode",
+    "pathSpecification"
+  ],
+  "properties": {
+    "validatorId": {
+      "type": "string",
+      "description": "Unique identifier for the validator."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description of what it checks."
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version."
+    },
+    "mode": {
+      "type": "string",
+      "description": "Validation mode: 'file' (validates individual file content), 'file-structure' (validates directory layout and required files), or 'file-pair' (validates related files together, e.g., BAM and BAI).",
+      "enum": ["file", "file-structure", "file-pair"]
+    },
+    "pathSpecification": {
+      "type": "array",
+      "description": "List of path patterns used to select files to validate (e.g., 'METADATA/*.xml').",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

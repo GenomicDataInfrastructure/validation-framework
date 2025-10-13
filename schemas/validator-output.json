@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "JSON schema for the output of GDI validator",
+  "type": "object",
+  "required": ["result"],
+  "properties": {
+    "result": {
+      "type": "string",
+      "enum": ["passed", "failed"],
+      "description": "Overall validation outcome."
+    },
+    "files": {
+      "type": "array",
+      "description": "Optional per-file validation details.",
+      "items": {
+        "type": "object",
+        "required": ["path", "result"],
+        "properties": {
+          "path": { "type": "string" },
+          "result": {
+            "type": "string",
+            "enum": ["passed", "failed"]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["level", "time", "message"],
+              "properties": {
+                "level": {
+                  "type": "string",
+                  "enum": ["info", "warning", "error"]
+                },
+                "time": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "messages": {
+      "type": "array",
+      "description": "Optional job-level messages.",
+      "items": {
+        "type": "object",
+        "required": ["level", "time", "message"],
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": ["info", "warning", "error"]
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
