@@ -1,0 +1,8 @@
+{
+  "validatorId": "word-count-validator",
+  "name": "Word Count Validator",
+  "description": "Checks if the number of words in a file is between 500 and 1000.",
+  "version": "1.0.0",
+  "mode": "file",
+  "pathSpecification": ["*.txt", "*.text"]
+}

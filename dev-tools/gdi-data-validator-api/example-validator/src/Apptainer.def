@@ -1,0 +1,19 @@
+Bootstrap: docker
+From: python:3.10-alpine
+
+%files
+    src/word_count_validator.py /usr/local/bin/word_count_validator.py
+    src/metadata.json /usr/local/share/metadata.json
+
+%environment
+    export PATH="/usr/local/bin:$PATH"
+
+%post
+    chmod +x /usr/local/bin/word_count_validator.py
+
+%runscript
+    exec python3 /usr/local/bin/word_count_validator.py "$@"
+
+%labels
+    GDI_Validator="True"
+    Validator_ID="word-count-validator"
